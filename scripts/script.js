@@ -1,6 +1,5 @@
  const allProblemContainer = document.getElementById('all-issues-container');
-
-
+const problemCountelement = document.getElementById('count-in-heading')
 function toggleBtn(id) {
     const allFilterBtn =document.getElementById('all-filter-btn');
    const openFilterBtn =document.getElementById('open-filter-btn');
@@ -13,6 +12,13 @@ function toggleBtn(id) {
     selectedBtn.classList.add('btn-primary');
     
 }
+
+//  problem count 
+
+ function problemCount() {
+    problemCountelement.innerText =allProblemContainer.children.length;
+ }
+
 
 // all data/problems will show dynamically 
 
@@ -52,6 +58,7 @@ function toggleBtn(id) {
         
         `
         allProblemContainer.appendChild(card)
+         problemCount()
       
  })}
 
