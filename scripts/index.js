@@ -27,15 +27,3 @@ document.getElementById('sign-in-btn').addEventListener('click', function(){
 
 //  main container login start here
 
-function toggleBtn(id) {
-    const allFilterBtn =document.getElementById('all-filter-btn');
-   const openFilterBtn =document.getElementById('open-filter-btn');
-     const closeFilterBtn =document.getElementById('close-filter-btn');
-
-    allFilterBtn.classList.remove('btn-primary')
-    openFilterBtn.classList.remove('btn-primary')
-    closeFilterBtn.classList.remove('btn-primary')
-    const selectedBtn =document.getElementById(id);
-    selectedBtn.classList.add('btn-primary');
-    
-}
