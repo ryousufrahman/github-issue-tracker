@@ -30,26 +30,33 @@ function toggleBtn(id) {
     displayProblem(data.data) 
 }
   function displayProblem(problems) {
+    allProblemContainer.innerHTML='';
     problems.forEach((problem)=>{
         const card =document.createElement('div');
         
-        card.className ="issue-box shadow p-4 space-y-3 ";
+        card.className =`issue-box shadow p-4 space-y-3 rounded-md " ${problem.status=='open'? 'border-t-4 border-green-500' : 'border-t-4 border-purple-500' }`;
         card.innerHTML =`
           <div class="flex justify-between">
-                <img src="assets/Open-Status.png" alt="">
-                <p class="px-3 py-2 rounded-full text-red-500 bg-red-100">HIGH</p>
+                <img src="${problem.status=='open' ? 'assets/Open-Status.png': 'assets/Closed- Status .png' }" alt="" class ="w-[30px]">
+                <p class="px-3 py-2 rounded-full ${
+                    problem.priority=='high'
+                    ? 'text-red-500 bg-red-100'
+                    : problem.priority=='medium'
+                    ? 'text-orange-400 bg-orange-200' 
+                    : 'text-gray-500 bg-gray-200'
+                } ">${problem.priority}</p>
             </div>
             <div>
-                <h3 class="font-bold">Fix navigation menu on mobile devices</h3>
-                <p class="text-gray-500">The navigation menu doesn't collapse properly on mobile devices...</p>
+                <h3 class="font-bold mb-2">${problem.title}</h3>
+                <p class="text-gray-500 line-clamp-2">${problem.description}</p>
             </div>
-            <div>
+            <div class= "mb-3 mt-3">
                 <span class="px-3 py-2 rounded-full text-red-500 bg-red-100">bug</span>
                 
             </div>
-            <hr class="">
-            <p>#1 by john_doe</p>
-            <p>1/15/2024</p>
+            <hr class="border-t-2 border-gray-300 mt-4">
+            <p class ="text-gray-500 mt-3">${problem.assignee ? problem.assignee : 'anonymous'}</p>
+            <p class ="text-gray-500" >${problem.createdAt}</p>
 
         
         
