@@ -1,5 +1,6 @@
  const allProblemContainer = document.getElementById('all-issues-container');
-const problemCountelement = document.getElementById('count-in-heading')
+const problemCountelement = document.getElementById('count-in-heading');
+const loadingSpinnar =document.getElementById('loading-spinnar')
 function toggleBtn(id) {
     const allFilterBtn =document.getElementById('all-filter-btn');
    const openFilterBtn =document.getElementById('open-filter-btn');
@@ -24,6 +25,8 @@ function toggleBtn(id) {
 
   async function loadProblem(){
     console.log('hello');
+    loadingSpinnar.classList.remove('hidden')
+    loadingSpinnar.classList.add('flex')
     
     const res = await fetch('https://phi-lab-server.vercel.app/api/v1/lab/issues');
     const data = await res.json();
@@ -31,6 +34,7 @@ function toggleBtn(id) {
 }
   function displayProblem(problems) {
     allProblemContainer.innerHTML='';
+    
     problems.forEach((problem)=>{
         const card =document.createElement('div');
         
@@ -65,8 +69,13 @@ function toggleBtn(id) {
         
         `
         allProblemContainer.appendChild(card)
+        loadingSpinnar.classList.add('hidden')
          problemCount()
       
  })}
 
 loadProblem()
+
+// now close and open problem code start from here
+
+ 
