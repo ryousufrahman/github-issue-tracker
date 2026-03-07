@@ -2,6 +2,17 @@
  let openData;
  let closeData;
 const problemCountelement = document.getElementById('count-in-heading');
+
+
+// level showing funtion
+function levelShowing(arr) {
+   const spanCreate =arr.map((el)=> `<span class="${el=='bug'? 'bg-red-100 p-2 text-red-500 rounded-xl m-1': el=='enhancement'? 'bg-green-100 text-green-500 rounded-xl p-2 m-1' : el=='documentation'?'bg-blue-100 text-blue-500 rounded-xl p-2 m-1' :'bg-yellow-100 text-yellow-500 rounded-xl p-2 m-1'}">${el.toUpperCase()}</span>`)
+   return spanCreate.join(' ')
+  
+ }
+
+
+
 const loadingSpinnar =document.getElementById('loading-spinnar')
 function toggleBtn(id) {
     const allFilterBtn =document.getElementById('all-filter-btn');
@@ -16,6 +27,10 @@ function toggleBtn(id) {
     
     
 }
+
+
+
+ 
 
 //  problem count 
 
@@ -55,20 +70,17 @@ function toggleBtn(id) {
                 <img src="${problem.status=='open' ? 'assets/Open-Status.png': 'assets/Closed- Status .png' }" alt="" class ="w-[30px]">
                 <p class="px-3 py-2 rounded-full ${
                     problem.priority=='high'
-                    ? 'text-red-500 bg-red-100'
+                    ? 'text-red-500 font-bold bg-red-100'
                     : problem.priority=='medium'
-                    ? 'text-orange-400 bg-orange-200' 
-                    : 'text-gray-500 bg-gray-200'
+                    ? 'text-orange-500 bg-orange-100 font-bold' 
+                    : 'text-gray-500 bg-gray-200 font-bold'
                 } ">${problem.priority}</p>
             </div>
-            <div>
+            <div class="mb-3">
                 <h3 class="font-bold mb-2">${problem.title}</h3>
                 <p class="text-gray-500 line-clamp-2">${problem.description}</p>
             </div>
-            <div class= "mb-3 mt-3">
-                <span class="px-3 py-2 rounded-full text-red-500 bg-red-100">bug</span>
-                
-            </div>
+            <div class= "flex flex-wrap">${levelShowing(problem.labels)}</div>
             <hr class="border-t-2 border-gray-300 mt-4">
             <p class ="text-gray-500 mt-3">${problem.assignee ? problem.assignee : 'anonymous'}</p>
             <p class ="text-gray-500" >${problem.createdAt}</p>
