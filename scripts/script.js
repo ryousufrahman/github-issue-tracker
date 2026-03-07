@@ -65,7 +65,7 @@ const problemCountelement = document.getElementById('count-in-heading');
 
 // level showing funtion
 function levelShowing(arr) {
-   const spanCreate =arr.map((el)=> `<span class="${el=='bug'? 'bg-red-100 p-2 text-red-500 rounded-xl m-1': el=='enhancement'? 'bg-green-100 text-green-500 rounded-xl p-2 m-1' : el=='documentation'?'bg-blue-100 text-blue-500 rounded-xl p-2 m-1' :'bg-yellow-100 text-yellow-500 rounded-xl p-2 m-1'}">${el.toUpperCase()}</span>`)
+   const spanCreate =arr.map((el)=> `<span class="${el=='bug'? 'bg-red-100 p-2 text-red-500 rounded-xl m-1': el=='enhancement'? 'bg-green-100 text-green-500 rounded-xl p-2 m-1' : el=='documentation'?'bg-blue-100 text-blue-500 rounded-xl p-2 m-1' :'bg-yellow-100 text-yellow-500 rounded-xl p-2 m-1'}"> ${el=='bug' ? '<i class="fa-solid fa-bug"></i>' : '<i class="fa-regular fa-compass"></i>'} ${el.toUpperCase()}  </span>`)
    return spanCreate.join(' ')
   
  }
