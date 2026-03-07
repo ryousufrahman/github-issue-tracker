@@ -3,6 +3,65 @@
  let closeData;
 const problemCountelement = document.getElementById('count-in-heading');
 
+//  load problem details
+  
+ const showDetails = async (id)=>{
+ const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`
+ 
+ const res = await fetch(url);
+ const details =await res.json();
+ displayDetails(details.data);
+ 
+ };
+ const displayDetails =(problem)=>{
+   const date = new Date(problem.createdAt);
+     const formattedDate = date.toLocaleDateString();
+    console.log(problem);
+    const detailsContainer =document.getElementById('details-container');
+    detailsContainer.innerHTML =`
+    
+       <h2 class="text-xl font-bold mb-3">${problem.title}</h2>
+     <div class="flex gap-4 mb-3 mt-3 items-center">
+      <span class="${problem.status=='open'? 'bg-green-500':'bg-purple-500'} p-2 rounded-xl text-white">${problem.status}</span>
+      <p class="text-gray-500">${problem.assignee}</p>
+      <p class="text-gray-500">${formattedDate}</p>
+
+     </div>
+     <div class=" mb-4">
+      <div class= "flex flex-wrap">${levelShowing(problem.labels)}</div>
+     </div>
+
+    </div>
+    <div class="mb-4">
+      <p class="text-gray-500">${problem.description}</p>
+    </div>
+    <div class="flex justify-between bg-blue-50 p-5 rounded-sm">
+      <div>
+         <p class="text-gray-500">Assignee</p>
+         <p class="font-bold">${problem.author}</p>
+
+      </div>
+      <div>
+         <p class="text-gray-500 mb-3">Priority</p>
+         <span class="p-2 mt-2 rounded-xl font-bold ${
+          problem.priority=='high'
+                    ? 'text-red-500 font-bold bg-red-100'
+                    : problem.priority=='medium'
+                    ? 'text-yellow-500 bg-yellow-100 ' 
+                    : 'text-gray-500 bg-gray-200 '
+
+         }">${problem.priority}</span>
+      </div>
+
+    
+    `
+    document.getElementById('my_modal_5').showModal();
+
+    
+
+  };
+
+
 
 // level showing funtion
 function levelShowing(arr) {
@@ -66,7 +125,7 @@ function toggleBtn(id) {
      const formattedDate = date.toLocaleDateString();
         const card =document.createElement('div');
         
-        card.className =`issue-box shadow p-4 space-y-3 rounded-md " ${problem.status=='open'? 'border-t-4 border-green-500' : 'border-t-4 border-purple-500' }`;
+        card.className =`issue-box shadow p-4 space-y-3 rounded-md   ${problem.status=='open'? 'border-t-4 border-green-500' : 'border-t-4 border-purple-500' }`;
         card.innerHTML =`
           <div class="flex justify-between">
                 <img src="${problem.status=='open' ? 'assets/Open-Status.png': 'assets/Closed- Status .png' }" alt="" class ="w-[30px]">
@@ -74,7 +133,7 @@ function toggleBtn(id) {
                     problem.priority=='high'
                     ? 'text-red-500 font-bold bg-red-100'
                     : problem.priority=='medium'
-                    ? 'text-orange-500 bg-orange-100 font-bold' 
+                    ? 'text-yellow-500 bg-yellow-100 font-bold' 
                     : 'text-gray-500 bg-gray-200 font-bold'
                 } ">${problem.priority}</p>
             </div>
@@ -84,8 +143,11 @@ function toggleBtn(id) {
             </div>
             <div class= "flex flex-wrap">${levelShowing(problem.labels)}</div>
             <hr class="border-t-2 border-gray-300 mt-4">
+           <div class="flex justify-between items-center ">
             <p class ="text-gray-500 mt-3">${problem.assignee ? problem.assignee : 'anonymous'}</p>
             <p class ="text-gray-500" >${formattedDate}</p>
+           </div>
+           <button class="btn btn-soft btn-info" onclick="showDetails(${problem.id})">See Details</button>
 
         
         
@@ -139,6 +201,8 @@ function toggleBtn(id) {
 //  loadProblem().then((data) => {
    
 //    });
+  
+
 
 
    
