@@ -220,6 +220,7 @@ document.getElementById('btn-search').addEventListener('click', function(){
  openfilter.classList.remove('btn-primary')
  const closefilter =document.getElementById('close-filter-btn')
  closefilter.classList.remove('btn-primary')
+ inputValue.value =''
    
  }
  )
