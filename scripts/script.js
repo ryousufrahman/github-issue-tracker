@@ -62,6 +62,8 @@ function toggleBtn(id) {
     allProblemContainer.innerHTML='';
     
     problems.forEach((problem)=>{
+       const date = new Date(problem.createdAt);
+     const formattedDate = date.toLocaleDateString();
         const card =document.createElement('div');
         
         card.className =`issue-box shadow p-4 space-y-3 rounded-md " ${problem.status=='open'? 'border-t-4 border-green-500' : 'border-t-4 border-purple-500' }`;
@@ -83,7 +85,7 @@ function toggleBtn(id) {
             <div class= "flex flex-wrap">${levelShowing(problem.labels)}</div>
             <hr class="border-t-2 border-gray-300 mt-4">
             <p class ="text-gray-500 mt-3">${problem.assignee ? problem.assignee : 'anonymous'}</p>
-            <p class ="text-gray-500" >${problem.createdAt}</p>
+            <p class ="text-gray-500" >${formattedDate}</p>
 
         
         
