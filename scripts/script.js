@@ -201,6 +201,33 @@ function toggleBtn(id) {
 //  loadProblem().then((data) => {
    
 //    });
+
+document.getElementById('btn-search').addEventListener('click', function(){
+ const inputElement =document.getElementById('input-search');
+ const inputValue = inputElement.value.trim().toLowerCase();
+ fetch('https://phi-lab-server.vercel.app/api/v1/lab/issues')
+ .then(res=> res.json())
+ .then(data=> {
+  const allProblem = data.data;
+   const filterWords =allProblem.filter(problem=>problem.title.toLowerCase().includes(inputValue));
+   console.log(filterWords);
+   displayProblem(filterWords);
+   problemCount();
+   
+ const allfilter =document.getElementById('all-filter-btn')
+ allfilter.classList.remove('btn-primary')
+ const openfilter =document.getElementById('open-filter-btn')
+ openfilter.classList.remove('btn-primary')
+ const closefilter =document.getElementById('close-filter-btn')
+ closefilter.classList.remove('btn-primary')
+   
+ }
+ )
+ 
+ 
+ 
+
+})
   
 
 
