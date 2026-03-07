@@ -1,4 +1,6 @@
  const allProblemContainer = document.getElementById('all-issues-container');
+ let openData;
+ let closeData;
 const problemCountelement = document.getElementById('count-in-heading');
 const loadingSpinnar =document.getElementById('loading-spinnar')
 function toggleBtn(id) {
@@ -11,6 +13,7 @@ function toggleBtn(id) {
     closeFilterBtn.classList.remove('btn-primary')
     const selectedBtn =document.getElementById(id);
     selectedBtn.classList.add('btn-primary');
+    
     
 }
 
@@ -30,8 +33,16 @@ function toggleBtn(id) {
     
     const res = await fetch('https://phi-lab-server.vercel.app/api/v1/lab/issues');
     const data = await res.json();
-    displayProblem(data.data) 
+     openData =data.data.filter(open=> open.status=='open')
+     closeData =data.data.filter(close=> close.status=='closed')
+     displayProblem(data.data);
+     
+      
+     
+   
+    
 }
+
   function displayProblem(problems) {
     allProblemContainer.innerHTML='';
     
@@ -74,8 +85,46 @@ function toggleBtn(id) {
       
  })}
 
-loadProblem()
+   
+   
+   
+   
+   
 
 // now close and open problem code start from here
-
+  
+ document.getElementById('open-filter-btn').addEventListener('click', function(){
+   console.log('open');
+   allProblemContainer.innerHTML=''
+   loadingSpinnar.classList.remove('hidden')
+    loadingSpinnar.classList.add('flex')
+    displayProblem(openData);
+      
+ })
  
+ document.getElementById('close-filter-btn').addEventListener('click', function(){
+   console.log('close');
+
+   allProblemContainer.innerHTML=''
+   loadingSpinnar.classList.remove('hidden')
+    loadingSpinnar.classList.add('flex')
+    displayProblem(closeData);
+    
+    
+ 
+   
+ })
+ document.getElementById('all-filter-btn').addEventListener('click',function(){
+    loadProblem();
+ })
+ 
+ 
+ 
+ loadProblem();
+ 
+//  loadProblem().then((data) => {
+   
+//    });
+
+
+   
