@@ -24,14 +24,14 @@
 </head>
 <body class="">
      <header class=" navbar bg-base-100 shadow-sm">
-<div class="navbar max-w-[1400px] mx-auto">
-  <div class="flex-1 flex items-center gap-3">
+<div class=" flex-col gap-3 sm:flex-row navbar max-w-[1300px] mx-auto ">
+  <div class="flex-1 flex items-center gap-3 ">
     <img src="assets/github-logo.png" alt="" class="w-[40px]">
     <h2 class=" text-xl font-bold">GitHub Issues Tracker</h2>
   </div>
   <div class="flex gap-1">
     <input type="search" placeholder=" Search issues..." class="input input-bordered w-24 md:w-auto" id="input-search" />
-     <button id="btn-search" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i></button>
+     <button id="btn-search" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
   </div>
 </div>
 
@@ -47,7 +47,7 @@
         <div class="flex justify-between items-center">
            <div class="flex gap-3 items-center">
               <div>
-                <img src="assets/Aperture.png" alt="">
+                <img src="assets/Aperture.png" alt="" class="w-[50px] h-[50px]">
               </div>
               <div>
                 <h2 class="text-xl font-bold"><span id="count-in-heading"></span> Issues</h2>
@@ -71,7 +71,7 @@
      </section>
      
 
-     <section class="all-issues-container grid gap-1 p-3 sm:grid-cols-4 sm:gap-4 mt-3" id="all-issues-container">
+     <section class="all-issues-container grid gap-1 sm:gap-4 mt-3 p-3 md:grid-cols-3  lg:grid-cols-4" id="all-issues-container">
         
 
      </section>

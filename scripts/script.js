@@ -23,9 +23,10 @@ const problemCountelement = document.getElementById('count-in-heading');
        <h2 class="text-xl font-bold mb-3">${problem.title}</h2>
      <div class="flex gap-4 mb-3 mt-3 items-center">
       <span class="${problem.status=='open'? 'bg-green-500':'bg-purple-500'} p-2 rounded-xl text-white">${problem.status}</span>
-      <p class="text-gray-500">${problem.assignee}</p>
+      <p class="text-gray-500" >Opened by</p>
+      <p class="text-gray-500"> ${problem.assignee ? problem.assignee : 'anonymous'}</p>
       <p class="text-gray-500">${formattedDate}</p>
-
+         
      </div>
      <div class=" mb-4">
       <div class= "flex flex-wrap">${levelShowing(problem.labels)}</div>
@@ -124,11 +125,12 @@ function toggleBtn(id) {
        const date = new Date(problem.createdAt);
      const formattedDate = date.toLocaleDateString();
         const card =document.createElement('div');
+       
         
-        card.className =`issue-box shadow p-4 space-y-3 rounded-md   ${problem.status=='open'? 'border-t-4 border-green-500' : 'border-t-4 border-purple-500' }`;
+        card.className =`issue-box shadow p-4 space-y-3 rounded-md   ${problem.status=='open'? 'border-t-4 border-green-500' : 'border-t-4 border-purple-500'  }`;
         card.innerHTML =`
-          <div class="flex justify-between">
-                <img src="${problem.status=='open' ? 'assets/Open-Status.png': 'assets/Closed- Status .png' }" alt="" class ="w-[30px]">
+          <div class="flex justify-between" >
+                <img src="${problem.status=='open' ? 'assets/Open-Status.png': 'assets/Closed- Status .png' }" alt="" class ="h-[30px] w-[30px]">
                 <p class="px-3 py-2 rounded-full ${
                     problem.priority=='high'
                     ? 'text-red-500 font-bold bg-red-100'
@@ -137,7 +139,7 @@ function toggleBtn(id) {
                     : 'text-gray-500 bg-gray-200 font-bold'
                 } ">${problem.priority}</p>
             </div>
-            <div class="mb-3">
+            <div class="mb-3"  >
                 <h3 class="font-bold mb-2">${problem.title}</h3>
                 <p class="text-gray-500 line-clamp-2">${problem.description}</p>
             </div>
